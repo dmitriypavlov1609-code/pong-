@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="apple-mobile-web-app-status-bar-style" content="black"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;Pong Game&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>* {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-sizing: border-box;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>flex-direction: column;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>height: 100vh;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'Arial', sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #fff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>overflow: hidden;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>canvas {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 2px solid #fff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.score {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 24px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.instructions {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 14px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #888;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="score"&gt;Left: &lt;span id="leftScore"&gt;0&lt;/span&gt; | Right: &lt;span id="rightScore"&gt;0&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;canvas id="game" width="320" height="480"&gt;&lt;/canvas&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="instructions"&gt;Touch to move left paddle&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const canvas = document.getElementById('game');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const ctx = canvas.getContext('2d');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const leftScoreElem = document.getElementById('leftScore');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const rightScoreElem = document.getElementById('rightScore');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Параметры игры</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const paddleWidth = 10;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const paddleHeight = 100;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const ballSize = 10;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let ballX = canvas.width / 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let ballY = canvas.height / 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let ballSpeedX = 3;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let ballSpeedY = 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let leftPaddleY = canvas.height / 2 - paddleHeight / 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let rightPaddleY = canvas.height / 2 - paddleHeight / 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let leftScore = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let rightScore = 0;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Управление (касание)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>canvas.addEventListener('touchmove', (e) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const touch = e.touches[0];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const touchY = touch.clientY - canvas.getBoundingClientRect().top;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>leftPaddleY = touchY - paddleHeight / 2;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Ограничение по границам</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (leftPaddleY &lt; 0) leftPaddleY = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (leftPaddleY &gt; canvas.height - paddleHeight) leftPaddleY = canvas.height - paddleHeight;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Основной игровой цикл</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function gameLoop() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Очищаем холст</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ctx.clearRect(0, 0, canvas.width, canvas.height);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Рисуем ракетки</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ctx.fillStyle = '#fff';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight); // Левая</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ctx.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight); // Правая</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Рисуем мяч</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ctx.fillRect(ballX, ballY, ballSize, ballSize);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Движем мяч</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ballX += ballSpeedX;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ballY += ballSpeedY;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Столкновение с верхней/нижней границей</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (ballY &lt;= 0 || ballY &gt;= canvas.height - ballSize) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ballSpeedY *= -1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Столкновение с левой ракеткой</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ballX &lt;= paddleWidth &amp;&amp;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ballY &gt;= leftPaddleY &amp;&amp;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ballY &lt;= leftPaddleY + paddleHeight</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ballSpeedX *= -1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ballX = paddleWidth; // Избегаем «залипания»</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Столкновение с правой ракеткой (ИИ)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ballX &gt;= canvas.width - paddleWidth - ballSize &amp;&amp;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ballY &gt;= rightPaddleY &amp;&amp;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ballY &lt;= rightPaddleY + paddleHeight</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ballSpeedX *= -1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ballX = canvas.width - paddleWidth - ballSize;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Гол (выход за границы по X)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (ballX &lt; 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>rightScore++;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>rightScoreElem.textContent = rightScore;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>resetBall();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} else if (ballX &gt; canvas.width) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>leftScore++;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>leftScoreElem.textContent = leftScore;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>resetBall();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// ИИ для правой ракетки (следит за мячом)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const rightPaddleCenter = rightPaddleY + paddleHeight / 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (rightPaddleCenter &lt; ballY + ballSize / 2) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>rightPaddleY += 3.5;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>rightPaddleY -= 3.5;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Ограничение по границам</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (rightPaddleY &lt; 0) rightPaddleY = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (rightPaddleY &gt; canvas.height - paddleHeight) rightPaddleY = canvas.height - paddleHeight;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>requestAnimationFrame(gameLoop);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Сброс мяча в центр</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function resetBall() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ballX = canvas.width / 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ballY = canvas.height / 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ballSpeedX = (Math.random() &gt; 0.5 ? 1 : -1) * 3;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ballSpeedY = (Math.random() &gt; 0.5 ? 1 : -1) * 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Запуск игры</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>gameLoop();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
